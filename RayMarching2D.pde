@@ -1,0 +1,45 @@
+ArrayList<Circle> obj = new ArrayList<Circle>();
+Viewer v;
+ArrayList<Point> points = new ArrayList<Point>();
+boolean go = false;
+
+void setup() {
+  fullScreen();
+
+  obj.add(new Circle(width - (width/4), height/2, 200));
+  obj.add(new Circle(width - (width/9), height/4, 400));
+  v = new Viewer(width/6, height/2);
+
+  background(0);
+  ellipseMode(RADIUS);
+  noFill();
+}
+
+void draw() {
+  background(0);
+
+  for (Circle c : obj) c.showNotScanned();
+
+  v.show();
+  if (go) {
+    strokeWeight(1);
+    pushMatrix();
+    translate(v.x, v.y);
+    PVector mouse = new PVector(mouseX, mouseY);
+    float angle = map(mouse.heading(), 0, 0.744, -PI/6, PI/6);
+    popMatrix();
+    v.findImpact(v.x, v.y, angle);
+  }
+  // Use this for automatic stuff
+  //for (float i = -PI/6; i < PI/6; i += 0.001)  v.findImpact(v.x, v.y, i);
+
+  for (int i = points.size()-1; i >= 0; i--) {
+    points.get(i).show();
+    //points have lifspans... for some reason
+    if (points.get(i).dead) points.remove(i); //Remove dead points
+  }
+}
+
+void keyPressed() {
+  go = !go;
+}
