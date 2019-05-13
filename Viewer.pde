@@ -25,7 +25,7 @@ public class Viewer {
     if (w <= 0.1) { //IMPACT
       Point impP = new Point(x, y);
       points.add(impP);
-    } else if (x <= width && y <= height) {
+    } else if (x>0 && y>0 && x <= width && y <= height) {
       findImpact(x, y, ang);
     }
   }

@@ -8,6 +8,8 @@ void setup() {
 
   obj.add(new Circle(width - (width/4), height/2, 200));
   obj.add(new Circle(width - (width/9), height/4, 400));
+  obj.add(new Rectangle(width/2, height/3, 50, 50));
+  obj.add(new Rectangle(width/10, height*2/3, 50, 50));
   v = new Viewer(width/6, height/2);
 
   background(0);
@@ -25,8 +27,8 @@ void draw() {
     strokeWeight(1);
     pushMatrix();
     translate(v.x, v.y);
-    PVector mouse = new PVector(mouseX, mouseY);
-    float angle = map(mouse.heading(), 0, 0.744, -PI/6, PI/6);
+    PVector mouse = new PVector(mouseX-v.x, mouseY-v.y);
+    float angle = mouse.heading(); //map(mouse.heading(), 0, 0.744, -PI/6, PI/6);
     popMatrix();
     v.findImpact(v.x, v.y, angle);
   }
