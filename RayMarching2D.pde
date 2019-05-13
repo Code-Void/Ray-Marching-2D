@@ -1,4 +1,4 @@
-ArrayList<Circle> obj = new ArrayList<Circle>();
+ArrayList<MarchableObject> obj = new ArrayList<MarchableObject>();
 Viewer v;
 ArrayList<Point> points = new ArrayList<Point>();
 boolean go = false;
@@ -18,7 +18,7 @@ void setup() {
 void draw() {
   background(0);
 
-  for (Circle c : obj) c.showNotScanned();
+  for (MarchableObject o : obj) o.showNotScanned();
 
   v.show();
   if (go) {
