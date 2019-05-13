@@ -1,8 +1,8 @@
-float distMultCircMax(float x, float y, ArrayList<Circle> cobjs) {
-  float biggest = dist(x, y, cobjs.get(0).cx, cobjs.get(0).cy) - cobjs.get(0).radius;
+float distMultCircMax(float x, float y, ArrayList<MarchableObject> cobjs) {
+  float biggest = cobjs.get(0).DE(x, y);
 
   for (int i = 1; i < cobjs.size(); i++) {
-    float d = dist(x, y, cobjs.get(i).cx, cobjs.get(i).cy) - cobjs.get(i).radius;
+    float d = cobjs.get(i).DE(x, y);
 
     if (d > biggest) biggest = d;
   }
@@ -10,11 +10,11 @@ float distMultCircMax(float x, float y, ArrayList<Circle> cobjs) {
   return biggest;
 }
 
-float distMultCircMin(float x, float y, ArrayList<Circle> cobjs) {
-  float shortest = dist(x, y, cobjs.get(0).cx, cobjs.get(0).cy) - cobjs.get(0).radius;
+float distMultCircMin(float x, float y, ArrayList<MarchableObject> cobjs) {
+  float shortest = cobjs.get(0).DE(x, y);
 
   for (int i = 1; i < cobjs.size(); i++) {
-    float d = dist(x, y, cobjs.get(i).cx, cobjs.get(i).cy) - cobjs.get(i).radius;
+    float d = cobjs.get(i).DE(x, y);
 
     if (d < shortest) shortest = d;
   }
